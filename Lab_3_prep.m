@@ -17,8 +17,10 @@ N = length(y);
 
 % the states xt = [a1 a2]'
 A = [1  0; 0 1]; % allow both parameters to change
-Re = 10^-7*eye(2); %Hidden state noise covariance  
-Rw = var(y); 
+Re = 10^-6*eye(2); %Hidden state noise covariance  
+%Rw = var(y); 
+Rw = 5;
+
 Rxx_1 = 1 * eye(2); % trust in initial conditions
 xtt_1 = [0; 0];  % initial states
 xsave = zeros(2,N) ;

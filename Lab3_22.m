@@ -1,11 +1,15 @@
+clear all
+clc
+
 tar2 = load('tar2.dat'); 
 thx = load('thx.dat'); 
 %%
 N = length(tar2); 
 % xt = state[a1 a2]
 A = [1  0; 0 1]; 
-Re = 10^-3 *[ 1 0 ; 0 0]; %Hidden state noise covariance  
-Rw = 1.25; 
+Re = 10^-2 *[ 1 0 ; 0 0]; %Hidden state noise covariance  
+%Rw = 1.25; 
+Rw = 9;
 Rxx_1 = 1 * eye(2); 
 xtt_1 = [0; 0]; 
 xsave = zeros(2,N) ;
@@ -24,11 +28,9 @@ for k=3:N
     Rxx_1 = A *Rxx*A' + Re; %Rxx will eventually go to zero leaving the variance of the noise
     Ryy_1 = C*Rxx_1*C' + Rw; 
     xtt_1 = A * xtt; 
-    
-    
-    
 end
-%%
+
+
 figure(1)
 plot(1:N, xsave(1,:), 'r'); 
 hold on
