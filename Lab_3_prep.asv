@@ -17,9 +17,9 @@ N = length(y);
 
 % the states xt = [a1 a2]'
 A = [1  0; 0 1];
-Re = 10^-4*eye(2); %Hidden state noise covariance, allow both parameters to change
-Rw = 0.5*var(y); 
-Rxx_1 = 0.5 * eye(2); % trust in initial conditions
+Re = 0* 10^-6*eye(2); %Hidden state noise covariance, allow both parameters to change
+Rw = var(y); 
+Rxx_1 = 0.8 * eye(2); % trust in initial conditions
 xtt_1 = [0; 0];  % initial states
 xsave = zeros(2,N) ;
 
@@ -31,7 +31,7 @@ for k=3:N
     Kt = Rxx_1*C'*inv(Ryy_1); %Ryy is in this sense Ryy at time t gven t  - 1
     %Rxx is still Rxx at t given t - 1
     Rxx =(eye(2) - Kt*C)*Rxx_1; % Updates Rxx at time t given t 
-    xtt = xtt_1 + Kt *(y(k) - C*xsave(:,k-1)); % expected value of e is equal to zero. 
+    xtt = xtt_1 + Kt *(tar2(k) - C*xsave(:,k-1)); % expected value of e is equal to zero. 
     %Save 
     xsave(:,k) = xtt; 
     %Precitions

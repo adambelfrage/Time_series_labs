@@ -15,11 +15,11 @@ thx = armax(Z,model); % coefficients for cos and sine
 
 plot(U*cell2mat(thx.b)', 'b')
 hold on 
-%plot(y - mean(y),'r' )
+plot(y - mean(y),'r' )
 %plot(y - U*cell2mat(thx.b)' - mean(y),'r' )
 
 Y_season = y - U*cell2mat(thx.b)' - mean(y); % removed season and mean
-visualize_process(Y_season); % the season is not very well modeled by the sin/cos signal
+% visualize_process(Y_season); % the season is not very well modeled by the sin/cos signal
 
 %%
 U = [sin(2*pi*t/6) cos(2*pi*t/6) ones(size(t))];

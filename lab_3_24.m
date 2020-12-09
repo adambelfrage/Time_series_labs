@@ -20,13 +20,13 @@ th = armax(y_diff,[2 2]);
 th_winter = armax(y_diff(1:540),[2 2]);
 th_summer = armax(y_diff(907:1458),[2 2]);
 
-% %present(th_winter)
+present(th_winter)
 % present(th)
 
 %%
-%th0 = [th_winter.A(2:end) th_winter.C(2:end)]; % initial estimate
-th0 = [th_summer.A(2:end) th_summer.C(2:end)]; % initial estimate
-[thr , yhat] = rarmax(y_diff,[2 2],'ff',0.999,th0);
+th0 = [th_winter.A(2:end) th_winter.C(2:end)]; % initial estimate
+%th0 = [th_summer.A(2:end) th_summer.C(2:end)]; % initial estimate
+[thr , yhat] = rarmax(y_diff,[2 2],'ff',0.991,th0);
 
 subplot (3, 1, 1)
 plot(T,y(7:end));
